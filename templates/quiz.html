@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Aki's Language Lab Δ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Kappale {{ kappale_num }} Quiz</h1>
+    <form action="{{ url_for('result') }}" method="POST">
+        {% for question in questions %}
+            <div class="question">
+                <p>{{ question.question }}</p>
+                {% for choice in question.choices %}
+                    <label>
+                        <input type="radio" name="answer{{ loop.index }}" value="{{ choice }}">
+                        {{ choice }}
+                    </label><br>
+                {% endfor %}
+                <input type="hidden" name="correct{{ loop.index }}" value="{{ question.correct }}">
+            </div>
+        {% endfor %}
+        <button type="submit">Go!</button>
+    </form>
+</body>
+</html>

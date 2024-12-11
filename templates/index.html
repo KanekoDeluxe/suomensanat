@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('static/front_page1.png'); /* 背景画像 */
+            background-size: cover;
+            background-position: center;
+        }
+        .banner {
+            position: absolute;
+            width: 360px; /* バナーの幅を調整 */
+            height: 200px; /* バナーの高さを調整 */
+            background-size: cover;
+            transition: background-image 0.3s ease; /* スムーズな切り替え */
+            cursor: pointer;
+        }
+        .banner-left {
+            bottom: 200px;
+            left: 200px;
+            background-image: url('static/finnish1.png');
+        }
+        .banner-right {
+            bottom: 200px;
+            right: 200px;
+            background-image: url('static/english1.png');
+        }
+        .banner-left:hover {
+            background-image: url('static/finnish2.png');
+        }
+        .banner-right:hover {
+            background-image: url('static/english2.png');
+        }
+    </style>
+</head>
+<body>
+    <!-- フィンランド語を答えさせる問題に飛ばすバナー -->
+    <a href="{{ url_for('quiz_select', language='fi_en') }}" class="banner banner-left"></a>
+    <!-- 英語を答えさせる問題に飛ばすバナー -->
+    <a href="{{ url_for('quiz_select', language='en_fi') }}" class="banner banner-right"></a>
+</body>
+</html>

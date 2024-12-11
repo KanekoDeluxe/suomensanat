@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .quiz-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .tile-target {
+            display: inline-block;
+            color: white;
+            font-size: 2.5rem;
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .correct-tile {
+            background-color: #28a745; /* 緑色 */
+        }
+        .wrong-tile {
+            background-color: #dc3545; /* 赤色 */
+        }
+        .next-tile {
+            background-color: #007bff; /* 青色 */
+            padding: 10px 20px; /* サイズを半分に変更 */
+            font-size: 1.2rem; /* サイズを半分に変更 */
+        }
+        .correct-answer-text {
+            font-size: 1.8rem;
+            color: black;
+            margin-top: 20px;
+        }
+        button {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- 正解の場合 -->
+        {% if feedback == 'Correct!' %}
+        <div class="tile-target correct-tile">
+            Correct!
+        </div>
+        <!-- Next ボタン -->
+        <a href="{{ url_for('quiz_question') }}" class="tile-target next-tile">
+            Next
+        </a>
+        {% endif %}
+
+        <!-- 不正解の場合 -->
+        {% if feedback == 'Wrong!' %}
+        <div class="tile-target wrong-tile">
+            Wrong!
+        </div>
+
+        <!-- Correct Answer: ~~~~ -->
+        <div class="correct-answer-text">
+            {% if 'Correct Answer:' not in correct_answer %}
+                Correct Answer: 
+            {% endif %}
+            {{ correct_answer }}
+        </div>
+
+        <!-- Next ボタン -->
+        <a href="{{ url_for('quiz_question') }}" class="tile-target next-tile">
+            Next
+        </a>
+        {% endif %}
+    </div>
+</body>
+</html>

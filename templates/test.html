@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Test: {{ direction.replace('_', ' ').title() }}</h1>
+    <form method="POST">
+        {% for question in questions %}
+            <div>
+                <p>{{ question.question }}</p>
+                {% for choice in question.choices %}
+                    <input type="radio" name="answer" value="{{ choice }}" required> {{ choice }}<br>
+                {% endfor %}
+                <input type="hidden" name="correct_answer" value="{{ question.answer }}">
+            </div>
+        {% endfor %}
+        <button type="submit">Go!</button>
+    </form>
+    {% if result %}
+        <p>Your answer is: {{ result }}</p>
+    {% endif %}
+</body>
+</html>

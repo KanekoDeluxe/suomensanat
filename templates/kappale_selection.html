@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select a Chapter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 2rem;
+            color: #333;
+        }
+        .chapter-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 50px 70px;
+            font-size: 40px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            width: 120px;
+            text-align: center;
+        }
+        .chapter-button:hover {
+            background-color: #0056b3;
+        }
+        /* 3x3 レイアウトにするための設定 */
+        .chapter-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3列 */
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 30px 45px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #6c757d;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .back-home:hover {
+            background-color: #5a6268;
+        }
+        /* 右下に配置 */
+        .back-home-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select a Chapter to Start the Quiz</h1>
+    <!-- 各章へのボタン -->
+    <div class="chapter-buttons">
+        {% for kappale in kappale_numbers %}
+        <a href="{{ url_for('start_quiz', language=language, kappale_num=kappale) }}" class="chapter-button">
+            Chapter {{ kappale }}
+        </a>
+        {% endfor %}
+    </div>
+    <!-- ホームへのリンク -->
+    <div class="back-home-container">
+        <a href="{{ url_for('index') }}" class="back-home">Back to Home</a>
+    </div>
+</body>
+</html>

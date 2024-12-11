@@ -1,0 +1,39 @@
+h1 {
+    font-size: 2rem; /* タイトルを適切なサイズに調整 */
+    margin-bottom: 20px;
+    color: #333; /* テキストカラーを変更 */
+}
+
+.next-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
+}
+
+.next-button:hover {
+    background-color: #218838;
+    transform: scale(1.05); /* ホバーで少し拡大 */
+}
+
+.next-button:active {
+    background-color: #1e7e34;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem; /* スマホ向けに小さめのフォント */
+    }
+
+    .next-button {
+        font-size: 1.2rem; /* スマホでのボタン文字サイズ調整 */
+        padding: 12px 24px;
+    }
+}
+

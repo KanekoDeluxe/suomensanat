@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .result-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        .result-message {
+            background-color: #007bff;
+            color: white;
+            font-size: 2.5rem;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .result-score {
+            font-size: 2rem;
+            color: #333;
+            margin: 20px 0;
+        }
+        .incorrect-answers {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .incorrect-answer {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .home-link {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .home-link:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <div class="result-message">{{ message }}</div>
+        <div class="result-score">Your score is {{ score }} out of {{ total_questions }}.</div>
+        
+        <!-- Display Incorrect Answers -->
+        {% if incorrect_answers %}
+        <div class="incorrect-answers">
+            <h3>You got the following questions wrong:</h3>
+            {% for answer in incorrect_answers %}
+                <div class="incorrect-answer">
+                    <strong>Question:</strong> {{ answer.question }}<br>
+                    <strong>Correct Answer:</strong> {{ answer.correct_answer }}
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Congratulations! You got all the answers right!</p>
+        {% endif %}
+
+        <a href="{{ url_for('index') }}" class="home-link">Home</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Language - Aki's Language Lab Δ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Select a Chapter</h1>
+    <div class="kappale-links">
+        {% for kappale_num in kappale_numbers %}
+            <a href="{{ url_for('quiz', language=language, kappale_num=kappale_num) }}">Kappale {{ kappale_num }}</a><br>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .quiz-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px; /* Increased padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%; /* Increased width */
+        }
+        .tile-target {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            font-size: 2.5rem; /* Increased font size */
+            padding: 20px 30px; /* Increased padding */
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .choices {
+            margin: 20px 0; /* Increased spacing between choices */
+            text-align: left; /* Align choices to the left */
+        }
+        .choices label {
+            font-size: 1.8rem; /* Increased font size */
+            margin-left: 10px;
+            display: block; /* Ensure full area is clickable */
+            padding: 10px 15px; /* Added padding for clickability */
+            background-color: #f9f9f9; /* Light gray background */
+            border: 1px solid #ccc; /* Border for definition */
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-align: center; /* Center text inside the label */
+        }
+        .choices label:hover {
+            background-color: #e6f7ff; /* Light blue on hover */
+            border-color: #007acc; /* Blue border on hover */
+        }
+        .choices input[type="radio"] {
+            margin-right: 10px; /* Space between radio button and text */
+            position: absolute; /* Hide the radio button */
+            opacity: 0; /* Make radio button invisible */
+        }
+        /* When radio button is checked, change label style */
+        .choices input[type="radio"]:checked + label {
+            font-weight: bold; /* Make text bold when selected */
+            background-color: #e6f7ff; /* Light blue background for selected option */
+            border-color: #007acc; /* Blue border color when selected */
+        }
+        /* Add the blue circle next to the selected radio button */
+        .choices input[type="radio"]:checked + label::before {
+            content: "\2022"; /* Unicode character for bullet point */
+            color: #007acc; /* Bullet color */
+            font-size: 2rem; /* Make the bullet bigger */
+            margin-right: 10px; /* Space between bullet and text */
+            position: absolute; /* Position the bullet before the text */
+            left: 10px; /* Move bullet to the left of the label */
+            top: 50%; /* Vertically center the bullet */
+            transform: translateY(-50%);
+        }
+        button {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            font-size: 1.5rem; /* Larger button text */
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="tile-target">{{ question }}</div>
+        <form method="POST">
+            {% for choice in choices %}
+            <div class="choices">
+                <input type="radio" id="{{ choice }}" name="answer" value="{{ choice }}">
+                <label for="{{ choice }}">{{ choice }}</label>
+            </div>
+            {% endfor %}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
