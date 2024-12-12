@@ -1,0 +1,42 @@
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.next-button {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.4s ease, transform 0.3s ease;
+    margin-top: 20px;
+}
+
+.next-button:hover {
+    background-color: #218838;
+    transform: scale(1.1);
+}
+
+.next-button:active {
+    background-color: #1e7e34;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.6rem;
+        line-height: 1.4;
+    }
+
+    .next-button {
+        font-size: 1.2rem;
+        padding: 16px 28px;
+        margin: 20px auto;
+        display: block;
+        text-align: center;
+    }
+}
